@@ -37,15 +37,15 @@ runCovNegative:
 
 calCov:
 	cd bin ; java -jar ../lib/jacococli.jar report jacoco.exec --classfiles ../bin \
-	--sourcefiles ../src --sourcefiles ../testcase --html reportDir
+	--sourcefiles ../src --sourcefiles ../testcase --xml ../Distant.xml
 
 calCovPositive:
 	cd bin ; java -jar ../lib/jacococli.jar report jacoco.exec --classfiles ../bin \
-	--sourcefiles ../src --sourcefiles ../testcase/Positive --html reportDir
+	--sourcefiles ../src --sourcefiles ../testcase/Positive --xml ../Distant.xml
 
 calCovNegative:
 	cd bin ; java -jar ../lib/jacococli.jar report jacoco.exec --classfiles ../bin \
-	--sourcefiles ../src --sourcefiles ../testcase/Negative --html reportDir
+	--sourcefiles ../src --sourcefiles ../testcase/Negative --xml ../Distant.xml
 
 showCov:
 	RED="\033[0;31m" ; NC='\033[0m' ; printf "$${RED}http://" ; curl -s https://api.ipify.org/ ; printf ":8000/$${NC}\n"
