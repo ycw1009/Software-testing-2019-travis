@@ -8,8 +8,8 @@ addons:
   apt:
     packages:
     - junit4
-install:
-  - sudo pip install codecov
+#install:
+#  - sudo pip install codecov
 script:
   - make clean
   - make compileTest
@@ -18,5 +18,5 @@ script:
 branches:
   only:
     - master
-#after_success:
-#  - codecov -X gcov
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
