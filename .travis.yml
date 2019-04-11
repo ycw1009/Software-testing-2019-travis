@@ -3,11 +3,10 @@ language: java
 os:
   - linux
 jdk:
-  - openjdk8
+  - oraclejdk9
 addons:
   apt:
     packages:
-    - openjdk-8-jdk-headless
     - junit4
 install:
   - sudo pip install codecov
