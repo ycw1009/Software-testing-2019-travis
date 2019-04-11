@@ -4,6 +4,10 @@ os:
   - linux
 jdk:
   - openjdk8
+addons:
+  apt:
+    packages:
+    - junit4
 install:
   - sudo pip install codecov
 script:
