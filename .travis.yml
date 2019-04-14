@@ -8,8 +8,6 @@ addons:
   apt:
     packages:
     - junit4
-#install:
-#  - sudo pip install codecov
 script:
   - make clean
   - make compileTest
