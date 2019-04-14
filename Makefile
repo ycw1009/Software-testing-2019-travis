@@ -37,7 +37,7 @@ runCovNegative:
 
 calCov:
 	cd bin ; java -jar ../lib/jacococli.jar report jacoco.exec --classfiles ../bin \
-	--sourcefiles ../src --sourcefiles ../testcase --xml ../Distant.xml
+	--sourcefiles ../src --sourcefiles ../testcase --xml ../jacoco.xml
 
 calCovPositive:
 	cd bin ; java -jar ../lib/jacococli.jar report jacoco.exec --classfiles ../bin \
