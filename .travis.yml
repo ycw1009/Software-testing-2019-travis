@@ -8,6 +8,7 @@ addons:
   apt:
     packages:
     - junit4
+    - libmockito-java
 script:
   - make clean
   - make compileTest
