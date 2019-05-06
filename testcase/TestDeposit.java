@@ -34,6 +34,8 @@ public class TestDeposit {
 		// 從二戰結束存錢到昭和63年6月4日, 存178417
 		// 利率都是2%
 
+		int expected = 0;
+
 		// when...
 
 		Deposit deposit = new Deposit(1945);
