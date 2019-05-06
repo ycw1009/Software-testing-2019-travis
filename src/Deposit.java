@@ -1,8 +1,15 @@
 public class Deposit {
-	public static String deposit(Acount customer, int startYear) {
-		float money = customer.depositAmount(); // 存款
+	private int startYear;
+
+	public Deposit (int startYear){
+		this.startYear = startYear;
+	}
+
+	public String deposit(Acount customer) {
+		double money = customer.depositAmount(); // 存款
 		String era = customer.expireEra(); // 年號
 		int endYear = customer.expireYear(); // 年份
+
 		if (era.equals("昭和")) {
 			endYear += 1926;
 		} else if (era.equals("平成")) {
@@ -13,7 +20,7 @@ public class Deposit {
 		assert (startYear <= endYear);
 
 		for (int year = startYear; year < endYear; year++) {
-			float interest = customer.depositInterest(year); // 利率
+			double interest = customer.depositInterest(year); // 利率
 			money *= (1 + interest);
 		}
 
@@ -25,9 +32,10 @@ public class Deposit {
 			endYear -= 1989;
 		} else if (endYear >= 1926) {
 			era = "昭和";
-			endYear += 1926;
+			endYear -= 1926;
 		}
-		String result = era + endYear + "年: " + money;
+
+		String result = era + endYear + "年: " + (int) money;
 		return result;
 	}
 }
