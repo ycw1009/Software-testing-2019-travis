@@ -3,6 +3,8 @@
 ## Makefile
 make [all]		- Compile JAVA class
 
+make Simple		- RUN make compileTest runCov calCov showCov
+
 make compileTest	- Compile Junit testing class
 
 make runCov		- Execute & record code coverage
