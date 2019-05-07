@@ -22,40 +22,39 @@ public class TestDeposit {
 		when(userA.depositInterest(gt(2000))).thenReturn(0.08);
 		when(userA.depositInterest(leq(2000))).thenReturn(0.02);
 		when(userA.expireEra()).thenReturn("令和");
-		when(userA.expireYear()).thenReturn(0);
+		when(userA.expireYear()).thenReturn(1);
 
 		Deposit deposit = new Deposit(1945);
 		String result = deposit.deposit(userA);
-		assertEquals("令和0年: 121125", result);
+		assertEquals("令和1年: 121125", result);
 	}
 
-	//@Test
-	public void test1945To1989() {
-		// 從二戰結束存錢到昭和63年6月4日, 存178417
-		// 利率都是2%
-
-		int expected = 0;
+	@Test
+	public void test1949To1989() {
+		// 從1949存錢到昭和64, 存198178
+		// 利率都是3%
+		double expected = 0;
 
 		// when...
 
-		Deposit deposit = new Deposit(1945);
+		Deposit deposit = new Deposit(1949);
 		String result = deposit.deposit(userA);
-		assertEquals("平成0年: " + (int) expected, result);
+		assertEquals("平成1年: " + (int) expected, result);
 	}
 
-	//@Test
+	@Test
 	public void test1974To1994() {
 		// 從老師的年代到助教的年代,存一年薪水18000
 		// 利率都是5%
 
 		// when...
 
-		Deposit deposit = new Deposit(1945);
+		Deposit deposit = new Deposit(1974);
 		String result = deposit.deposit(userA);
-		assertEquals("平成5年: 196583", result);
+		assertEquals("平成6年: 47759", result);
 	}
 
-	//@Test
+	@Test
 	public void test1937To1945() {
 		// 從二戰期間存40000元
 		// 利率都是10%
@@ -64,6 +63,6 @@ public class TestDeposit {
 
 		Deposit deposit = new Deposit(1937);
 		String result = deposit.deposit(userA);
-		assertEquals("昭和19年: 85743", result);
+		assertEquals("昭和20年: 85743", result);
 	}
 }

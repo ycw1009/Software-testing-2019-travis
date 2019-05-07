@@ -11,11 +11,11 @@ public class Deposit {
 		int endYear = customer.expireYear(); // 年份
 
 		if (era.equals("昭和")) {
-			endYear += 1926;
+			endYear += 1925;
 		} else if (era.equals("平成")) {
-			endYear += 1989;
+			endYear += 1988;
 		} else if (era.equals("令和")) {
-			endYear += 2019;
+			endYear += 2018;
 		}
 		assert (startYear <= endYear);
 
@@ -26,13 +26,13 @@ public class Deposit {
 
 		if (endYear >= 2019) {
 			era = "令和";
-			endYear -= 2019;
+			endYear -= 2018;
 		} else if (endYear >= 1989) {
 			era = "平成";
-			endYear -= 1989;
+			endYear -= 1988;
 		} else if (endYear >= 1926) {
 			era = "昭和";
-			endYear -= 1926;
+			endYear -= 1925;
 		}
 
 		String result = era + endYear + "年: " + (int) money;
