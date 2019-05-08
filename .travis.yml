@@ -10,10 +10,14 @@ addons:
     - junit4
     - libmockito-java
 script:
-  - make clean
-  - make compileTest
-  - make runCov
-  - make calCov
+  - make -C stubLW clean
+  - make -C stubLW compileTest
+  - make -C stubLW runCov
+  - make -C stubLW calCov
+  - make -C deposit clean
+  - make -C deposit compileTest
+  - make -C deposit runCov
+  - make -C deposit calCov
 branches:
   only:
     - master

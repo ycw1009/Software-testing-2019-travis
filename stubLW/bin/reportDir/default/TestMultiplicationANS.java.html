@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestMultiplicationANS.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">TestMultiplicationANS.java</span></div><h1>TestMultiplicationANS.java</h1><pre class="source lang-java linenums">import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+<span class="fc" id="L9">public class TestMultiplicationANS {</span>
+
+	@Test
+	public void testMultiplication() {
+		// Test simple multiplications
+<span class="fc" id="L14">		int a = 3;</span>
+<span class="fc" id="L15">		int b = 5;</span>
+<span class="fc" id="L16">		int expectedANS = 15;</span>
+
+<span class="fc" id="L18">		Multiplication multiplication = new Multiplication();</span>
+<span class="fc" id="L19">		int actualANS = multiplication.multiplication(a, b);</span>
+
+<span class="fc" id="L21">		assertEquals(expectedANS, actualANS);</span>
+<span class="fc" id="L22">	}</span>
+
+	@Test
+	public void testMultiplicationWithStubMockitoAbsolute() {
+		// Test two number multiplications
+<span class="fc" id="L27">		int a = 3;</span>
+<span class="fc" id="L28">		int b = 5;</span>
+<span class="fc" id="L29">		int expectedANS = 15;</span>
+<span class="fc" id="L30">		ArrayList&lt;Integer&gt; array = new ArrayList&lt;Integer&gt;(Arrays.asList(a, b));</span>
+
+<span class="fc" id="L32">		Factorization factorizationStub = mock(Factorization.class);</span>
+<span class="fc" id="L33">		when(factorizationStub.factorization(expectedANS)).thenReturn(array);</span>
+
+<span class="fc" id="L35">		Multiplication multiplication = new Multiplication();</span>
+<span class="fc" id="L36">		int actualANS = multiplication.multiplicationWithFactorizationAbsolute(factorizationStub, expectedANS);</span>
+
+<span class="fc" id="L38">		assertEquals(expectedANS, actualANS);</span>
+<span class="fc" id="L39">	}</span>
+
+	@Test
+	public void testMultiplicationWithStubMockito() {
+		// Test two number multiplications
+<span class="fc" id="L44">		int a = -7;</span>
+<span class="fc" id="L45">		int b = 5;</span>
+<span class="fc" id="L46">		int expectedANS = -35;</span>
+<span class="fc" id="L47">		ArrayList&lt;Integer&gt; array = new ArrayList&lt;Integer&gt;(Arrays.asList(a, b));</span>
+
+<span class="fc" id="L49">		Factorization factorizationStub = mock(Factorization.class);</span>
+<span class="fc" id="L50">		when(factorizationStub.factorization(expectedANS)).thenReturn(array);</span>
+<span class="fc" id="L51">		when(factorizationStub.factorizationRoot(-35, true)).thenReturn(1);</span>
+
+<span class="fc" id="L53">		Multiplication multiplication = new Multiplication();</span>
+<span class="fc" id="L54">		int actualANS = multiplication.multiplicationWithFactorization(factorizationStub, expectedANS, true);</span>
+
+<span class="fc" id="L56">		assertEquals(expectedANS, actualANS);</span>
+<span class="fc" id="L57">	}</span>
+
+	@Test
+	public void testMultiplicationWithStubMockitoAny() {
+		// Test two number multiplications
+<span class="fc" id="L62">		int a = 7;</span>
+<span class="fc" id="L63">		int b = 5;</span>
+<span class="fc" id="L64">		int expectedANS = -35;</span>
+<span class="fc" id="L65">		ArrayList&lt;Integer&gt; array = new ArrayList&lt;Integer&gt;(Arrays.asList(a, b));</span>
+
+<span class="fc" id="L67">		Factorization factorizationStub = mock(Factorization.class);</span>
+<span class="fc" id="L68">		when(factorizationStub.factorization(expectedANS)).thenReturn(array);</span>
+<span class="fc" id="L69">		when(factorizationStub.factorizationRoot(anyInt(), anyBoolean())).thenReturn(-1);</span>
+
+<span class="fc" id="L71">		Multiplication multiplication = new Multiplication();</span>
+<span class="fc" id="L72">		int actualANS = multiplication.multiplicationWithFactorization(factorizationStub, expectedANS, false);</span>
+
+<span class="fc" id="L74">		assertEquals(expectedANS, actualANS);</span>
+<span class="fc" id="L75">	}</span>
+
+	@Test
+	public void testMultiplicationThreeNumberArrayList() {
+		// Test three number multiplications
+<span class="fc" id="L80">		int a = 7;</span>
+<span class="fc" id="L81">                int b = 5;</span>
+<span class="fc" id="L82">                int expectedANS = -35;</span>
+<span class="fc" id="L83">                ArrayList&lt;Integer&gt; array = new ArrayList&lt;Integer&gt;(Arrays.asList(a, b));</span>
+
+<span class="fc" id="L85">                Factorization factorizationStub = mock(Factorization.class);</span>
+<span class="fc" id="L86">                when(factorizationStub.factorization(expectedANS)).thenReturn(array);</span>
+<span class="fc" id="L87">                when(factorizationStub.factorizationRoot(anyInt(), anyBoolean())).thenReturn(-1);</span>
+		// Here should init prepared answer
+
+		// Here should new Factorization object with Mockito stub
+		// Here should ask stub object to act whatever we want
+
+<span class="fc" id="L93">		Multiplication multiplication = new Multiplication();</span>
+<span class="fc" id="L94">		int actualANS = multiplication.multiplicationWithFactorizationAbsolute(factorizationStub, expectedANS);</span>
+
+<span class="nc" id="L96">		assertEquals(expectedANS, actualANS);</span>
+<span class="nc" id="L97">	}</span>
+
+	@Test
+	public void testMultiplicationOneNumberArrayList() {
+		// Test one number multiplications, complete test coverage to 100%
+<span class="fc" id="L102">		int a = 7;</span>
+<span class="fc" id="L103">                int b = 5;</span>
+<span class="fc" id="L104">                int expectedANS = -35;</span>
+<span class="fc" id="L105">                ArrayList&lt;Integer&gt; array = new ArrayList&lt;Integer&gt;(Arrays.asList(a));</span>
+
+<span class="fc" id="L107">                Factorization factorizationStub = mock(Factorization.class);</span>
+<span class="fc" id="L108">                when(factorizationStub.factorization(expectedANS)).thenReturn(array);</span>
+<span class="fc" id="L109">                when(factorizationStub.factorizationRoot(anyInt(), anyBoolean())).thenReturn(-1);</span>
+		// Here should init prepared answer
+
+		// Here should new Factorization object with Mockito stub
+		// Here should ask stub object to act whatever we want
+
+<span class="fc" id="L115">		Multiplication multiplication = new Multiplication();</span>
+<span class="fc" id="L116">		int actualANS = multiplication.multiplicationWithFactorizationAbsolute(factorizationStub, expectedANS);</span>
+
+<span class="nc" id="L118">		assertEquals(expectedANS, actualANS);</span>
+<span class="nc" id="L119">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

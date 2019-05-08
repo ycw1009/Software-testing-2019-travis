@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TestDeposit.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">TestDeposit.java</span></div><h1>TestDeposit.java</h1><pre class="source lang-java linenums">import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
+import org.mockito.Mockito.*; // java mock: Mockito
+import static org.mockito.Mockito.*;
+import static org.mockito.AdditionalMatchers.*;
+
+<span class="fc" id="L10">public class TestDeposit {</span>
+	Acount userA;
+
+	@Before
+	public void setUpMock() {
+<span class="fc" id="L15">		userA = mock(Acount.class);</span>
+<span class="fc" id="L16">	}</span>
+
+	@Test
+	public void test1945To2019() {
+		// 從二戰存錢到現在
+<span class="fc" id="L21">		when(userA.depositAmount()).thenReturn(10000);</span>
+<span class="fc" id="L22">		when(userA.depositInterest(gt(2000))).thenReturn(0.08);</span>
+<span class="fc" id="L23">		when(userA.depositInterest(leq(2000))).thenReturn(0.02);</span>
+<span class="fc" id="L24">		when(userA.expireEra()).thenReturn(&quot;令和&quot;);</span>
+<span class="fc" id="L25">		when(userA.expireYear()).thenReturn(0);</span>
+
+<span class="fc" id="L27">		Deposit deposit = new Deposit(1945);</span>
+<span class="fc" id="L28">		String result = deposit.deposit(userA);</span>
+<span class="fc" id="L29">		assertEquals(&quot;令和0年: 121125&quot;, result);</span>
+<span class="fc" id="L30">	}</span>
+
+	@Test
+	public void test1974To1994() {
+		// 從老師的年代到助教的年代,存一年薪水18000
+		// 利率都是8%
+<span class="fc" id="L36">		when(userA.depositAmount()).thenReturn(18000);</span>
+<span class="fc" id="L37">		when(userA.depositInterest(anyInt())).thenReturn(0.08);</span>
+<span class="fc" id="L38">		when(userA.expireEra()).thenReturn(&quot;平成&quot;);</span>
+<span class="fc" id="L39">		when(userA.expireYear()).thenReturn(5);</span>
+
+<span class="fc" id="L41">		Deposit deposit = new Deposit(1945);</span>
+<span class="fc" id="L42">		String result = deposit.deposit(userA);</span>
+<span class="fc" id="L43">		assertEquals(&quot;平成5年: 781693&quot;, result);</span>
+<span class="fc" id="L44">	}</span>
+
+	@Test
+	public void test1937To1945() {
+		// 從二戰期間存40000元
+		// 利率都是10%
+<span class="fc" id="L50">		when(userA.depositAmount()).thenReturn(40000);</span>
+<span class="fc" id="L51">		when(userA.depositInterest(anyInt())).thenReturn(0.1);</span>
+<span class="fc" id="L52">		when(userA.expireEra()).thenReturn(&quot;昭和&quot;);</span>
+<span class="fc" id="L53">		when(userA.expireYear()).thenReturn(19);</span>
+
+<span class="fc" id="L55">		Deposit deposit = new Deposit(1937);</span>
+<span class="fc" id="L56">		String result = deposit.deposit(userA);</span>
+<span class="fc" id="L57">		assertEquals(&quot;昭和19年: 85743&quot;, result);</span>
+<span class="fc" id="L58">	}</span>
+
+
+	public void test1945To1989() {
+		// 從二戰結束存錢到昭和64年6月4日
+		// 利率都是6%
+<span class="nc" id="L64">		when(userA.depositAmount()).thenReturn(10000);</span>
+<span class="nc" id="L65">		when(userA.depositInterest(anyInt())).thenReturn(0.06);</span>
+<span class="nc" id="L66">		when(userA.expireEra()).thenReturn(&quot;昭和&quot;);</span>
+<span class="nc" id="L67">		when(userA.expireYear()).thenReturn(63);</span>
+
+<span class="nc" id="L69">		Deposit deposit = new Deposit(1945);</span>
+<span class="nc" id="L70">		String result = deposit.deposit(userA);</span>
+<span class="nc" id="L71">		assertEquals(&quot;平成0年: 129854&quot;, result);</span>
+<span class="nc" id="L72">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
